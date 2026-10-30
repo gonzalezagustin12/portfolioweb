@@ -1,0 +1,231 @@
+.portfolio-section-dark {
+  background-color: #111111 !important;
+  color: #ffffff;
+  padding: 80px 0 160px 0;
+  overflow: hidden;
+}
+
+.portfolio-section-dark .section-title h2 {
+  color: #ffffff;
+}
+
+.portfolio-section-dark .section-title h2::after {
+  background: #FE2E2E;
+}
+
+.portfolio-section-dark .section-title p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.portfolio-accordion-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+/* AccordionGallery CSS */
+.accordion-gallery {
+  --ag-accent: #FE2E2E;
+  --ag-overlay: #111111;
+  --ag-text: #ffffff;
+  --ag-gap: 16px;
+  --ag-radius: 20px;
+  --ag-media-size: 800px;
+
+  display: flex;
+  flex-direction: row;
+  gap: var(--ag-gap);
+  width: 100%;
+  max-width: 100%;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  box-sizing: border-box;
+}
+
+.accordion-gallery--vertical {
+  flex-direction: column;
+}
+
+.ag-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--ag-radius);
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  outline: none;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  background: #181818;
+  box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.9);
+  will-change: flex-grow, transform;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 0.3s ease;
+}
+
+.ag-panel--navigating {
+  pointer-events: none;
+  z-index: 20;
+}
+
+.ag-panel--navigating .ag-panel__frame {
+  box-shadow: 0 0 35px rgba(254, 46, 46, 0.4);
+}
+
+.ag-panel:hover {
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95);
+}
+
+.ag-panel:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--ag-accent),
+    0 10px 30px -18px rgba(0, 0, 0, 0.8);
+}
+
+.ag-panel__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.ag-panel__media {
+  --ag-gray: 0;
+  --ag-dim: 0.35;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--ag-media-size);
+  height: 100%;
+  filter: grayscale(var(--ag-gray));
+  will-change: transform, filter;
+}
+
+.accordion-gallery--vertical .ag-panel__media {
+  width: 100%;
+  height: var(--ag-media-size);
+}
+
+.ag-panel__media img,
+.ag-panel__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Video element: stacked absolutely over the image, hidden by default */
+.ag-media-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Image element */
+.ag-media-img {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+}
+
+.ag-panel__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--ag-overlay) 85%, transparent) 100%),
+    color-mix(in srgb, var(--ag-overlay) calc(var(--ag-dim, 0.35) * 100%), transparent);
+}
+
+.ag-panel__label {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ag-panel__bar {
+  flex: 0 0 auto;
+  width: 4px;
+  height: 32px;
+  border-radius: 4px;
+  background: var(--ag-accent);
+  opacity: 0;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--ag-accent) 70%, transparent);
+}
+
+.ag-panel__info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ag-panel__text {
+  color: var(--ag-text);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+}
+
+.ag-panel__subtext {
+  color: var(--ag-accent);
+  font-weight: 500;
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  letter-spacing: 0.5px;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .portfolio-section-dark {
+    padding: 60px 0 120px 0;
+  }
+  .portfolio-accordion-wrapper {
+    max-width: 100%;
+  }
+  .accordion-gallery {
+    flex-direction: column;
+    perspective: none;
+    height: 650px !important;
+  }
+  .ag-panel {
+    min-height: 90px;
+    transform: none !important;
+  }
+  .accordion-gallery .ag-panel__media {
+    width: 100%;
+    height: var(--ag-media-size);
+  }
+  .ag-panel__label {
+    left: 18px;
+    bottom: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-panel,
+  .ag-panel__media {
+    will-change: auto;
+  }
+}
